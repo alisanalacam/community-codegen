@@ -10,6 +10,8 @@ import Calendar from "./pages/Calendar";
 import Members from "./pages/Members";
 import Leaderboards from "./pages/Leaderboards";
 import About from "./pages/About";
+import Profile from "./pages/Profile";
+import ProfileEdit from "./pages/ProfileEdit";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +29,8 @@ const App = () => (
           <Route path="/members" element={<Members />} />
           <Route path="/leaderboards" element={<Leaderboards />} />
           <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<ProfileEdit />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
