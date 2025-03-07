@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Navigation from '@/components/Navigation';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from '@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from '@/components/ui/badge';
 import { ChevronUp, Trophy, Award, Star, Info, Calendar, Filter } from 'lucide-react';
