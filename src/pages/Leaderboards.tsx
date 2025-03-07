@@ -1,3 +1,4 @@
+
 import React from "react";
 import Header from '@/components/Header';
 import Navigation from '@/components/Navigation';
@@ -5,7 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from '@/components/ui/badge';
-import { ChevronUp, Trophy, Award, Star, Info, Calendar, Filter } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Progress } from "@/components/ui/progress";
+import { ChevronUp, Trophy, Award, Star, Info, Calendar, Filter, Users } from 'lucide-react';
 
 const Leaderboards = () => {
     return (
@@ -22,216 +25,193 @@ const Leaderboards = () => {
                     </Button>
                 </div>
 
-                {/* General Stats Section */}
+                {/* Member Levels Section */}
                 <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-4">General Stats</h2>
+                    <h2 className="text-2xl font-semibold mb-4">Member Levels</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <Card>
                             <CardHeader>
-                                <CardTitle className="flex items-center"><Trophy className="mr-2 h-5 w-5 text-yellow-500" /> Total Points</CardTitle>
+                                <CardTitle className="flex items-center"><Trophy className="mr-2 h-5 w-5 text-yellow-500" /> Beginner Level</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="text-3xl font-bold">12,456</div>
-                                <div className="text-sm text-gray-500">+3% from last month</div>
+                                <div className="text-3xl font-bold">42%</div>
+                                <div className="text-sm text-gray-500">Of members</div>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle className="flex items-center"><Award className="mr-2 h-5 w-5 text-blue-500" /> Active Members</CardTitle>
+                                <CardTitle className="flex items-center"><Award className="mr-2 h-5 w-5 text-blue-500" /> Intermediate Level</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="text-3xl font-bold">342</div>
-                                <div className="text-sm text-gray-500">+8 members this week</div>
+                                <div className="text-3xl font-bold">28%</div>
+                                <div className="text-sm text-gray-500">Of members</div>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle className="flex items-center"><Star className="mr-2 h-5 w-5 text-purple-500" /> Top Contributor</CardTitle>
+                                <CardTitle className="flex items-center"><Star className="mr-2 h-5 w-5 text-purple-500" /> Advanced Level</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="text-xl font-semibold">Alex Johnson</div>
-                                <div className="text-sm text-gray-500">1,234 points</div>
+                                <div className="text-3xl font-bold">18%</div>
+                                <div className="text-sm text-gray-500">Of members</div>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle className="flex items-center"><Info className="mr-2 h-5 w-5 text-green-500" /> Avg. Points per Member</CardTitle>
+                                <CardTitle className="flex items-center"><Info className="mr-2 h-5 w-5 text-green-500" /> Expert Level</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="text-3xl font-bold">36.4</div>
-                                <div className="text-sm text-gray-500">Based on last 30 days</div>
+                                <div className="text-3xl font-bold">12%</div>
+                                <div className="text-sm text-gray-500">Of members</div>
                             </CardContent>
                         </Card>
                     </div>
                 </section>
 
-                {/* Upcoming Events Section */}
+                {/* Profile Section */}
                 <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-4">Upcoming Events</h2>
                     <Card>
-                        <CardHeader>
-                            <CardTitle className="flex items-center"><Calendar className="mr-2 h-5 w-5" /> Next Community Call</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-lg font-semibold">Topic: AI in Education</div>
-                            <div className="text-sm text-gray-500">Date: July 15, 2023</div>
-                            <div className="text-sm text-gray-500">Time: 2:00 PM EST</div>
-                            <Button variant="secondary" className="mt-4">Join Call</Button>
+                        <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row items-center">
+                                <div className="mb-4 md:mb-0 md:mr-6 text-center">
+                                    <Avatar className="h-24 w-24 mb-2">
+                                        <AvatarImage src="https://github.com/shadcn.png" alt="Current User" />
+                                        <AvatarFallback>CU</AvatarFallback>
+                                    </Avatar>
+                                    <div className="text-lg font-semibold">Level 12</div>
+                                    <div className="text-sm text-gray-500">5 points to level up</div>
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-xl font-bold mb-1">John Doe</h3>
+                                    <p className="text-gray-500 mb-2">@johndoe</p>
+                                    <div className="mb-2">
+                                        <div className="flex justify-between text-sm mb-1">
+                                            <span>Level Progress</span>
+                                            <span>75%</span>
+                                        </div>
+                                        <Progress value={75} className="h-2" />
+                                    </div>
+                                    <p className="text-sm text-gray-600">Ranked #3 this month with 4,850 points</p>
+                                </div>
+                            </div>
                         </CardContent>
                     </Card>
                 </section>
 
-                {/* Top Members Leaderboard Section */}
-                <section>
-                    <h2 className="text-2xl font-semibold mb-4">Top Members</h2>
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full leading-normal">
-                            <thead>
-                                <tr>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Rank
-                                    </th>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Member
-                                    </th>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Points
-                                    </th>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Recent Activity
-                                    </th>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div className="flex items-center">
-                                            <div className="ml-3">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    1
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div className="flex items-center">
-                                            <div className="mr-2">
-                                                <Avatar>
-                                                    <AvatarImage src="https://github.com/shadcn.png" alt="Lucian Avram" />
-                                                    <AvatarFallback>LA</AvatarFallback>
+                {/* Time Period Leaderboards */}
+                <section className="mb-8">
+                    <h2 className="text-2xl font-semibold mb-4">Leaderboards</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* 7 Days Leaderboard */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center">
+                                    <Trophy className="mr-2 h-5 w-5 text-yellow-500" /> 
+                                    Last 7 Days
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ul className="space-y-3">
+                                    {[...Array(5)].map((_, i) => (
+                                        <li key={`week-${i}`} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                            <div className="flex items-center">
+                                                <span className="font-semibold mr-3">{i+1}.</span>
+                                                <Avatar className="h-8 w-8 mr-2">
+                                                    <AvatarImage src={`https://avatars.githubusercontent.com/u/${10000000 + i}?v=4`} />
+                                                    <AvatarFallback>{`U${i}`}</AvatarFallback>
                                                 </Avatar>
+                                                <span className="text-sm">User {i+1}</span>
                                             </div>
-                                            <div className="ml-3">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    John Doe
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p className="text-gray-900 whitespace-no-wrap">
-                                            5,300
-                                        </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p className="text-gray-900 whitespace-no-wrap">
-                                            Shared a helpful resource
-                                        </p>
-                                        <Badge className="bg-green-100 text-green-800 text-xs py-1">+25 points</Badge>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <Button variant="ghost" size="sm">View Profile</Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div className="flex items-center">
-                                            <div className="ml-3">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    2
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div className="flex items-center">
-                                            <div className="mr-2">
-                                                <Avatar>
-                                                    <AvatarImage src="https://avatars.githubusercontent.com/u/10407377?v=4" alt="Lucian Avram" />
-                                                    <AvatarFallback>LA</AvatarFallback>
+                                            <Badge variant="outline" className="ml-2">{950 - i*50} pts</Badge>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                        </Card>
+
+                        {/* 30 Days Leaderboard */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center">
+                                    <Trophy className="mr-2 h-5 w-5 text-blue-500" /> 
+                                    Last 30 Days
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ul className="space-y-3">
+                                    {[...Array(5)].map((_, i) => (
+                                        <li key={`month-${i}`} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                            <div className="flex items-center">
+                                                <span className="font-semibold mr-3">{i+1}.</span>
+                                                <Avatar className="h-8 w-8 mr-2">
+                                                    <AvatarImage src={`https://avatars.githubusercontent.com/u/${20000000 + i}?v=4`} />
+                                                    <AvatarFallback>{`U${i}`}</AvatarFallback>
                                                 </Avatar>
+                                                <span className="text-sm">User {i+1}</span>
                                             </div>
-                                            <div className="ml-3">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    Jane Smith
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p className="text-gray-900 whitespace-no-wrap">
-                                            4,800
-                                        </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p className="text-gray-900 whitespace-no-wrap">
-                                            Answered questions in the forum
-                                        </p>
-                                        <Badge className="bg-green-100 text-green-800 text-xs py-1">+15 points</Badge>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <Button variant="ghost" size="sm">View Profile</Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div className="flex items-center">
-                                            <div className="ml-3">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    3
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div className="flex items-center">
-                                            <div className="mr-2">
-                                                <Avatar>
-                                                    <AvatarImage src="https://images.unsplash.com/photo-1502823403499-6ccfcf4cdca9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Lucian Avram" />
-                                                    <AvatarFallback>LA</AvatarFallback>
+                                            <Badge variant="outline" className="ml-2">{2500 - i*150} pts</Badge>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                        </Card>
+
+                        {/* All Time Leaderboard */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center">
+                                    <Trophy className="mr-2 h-5 w-5 text-purple-500" /> 
+                                    All Time
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ul className="space-y-3">
+                                    {[...Array(5)].map((_, i) => (
+                                        <li key={`alltime-${i}`} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                            <div className="flex items-center">
+                                                <span className="font-semibold mr-3">{i+1}.</span>
+                                                <Avatar className="h-8 w-8 mr-2">
+                                                    <AvatarImage src={`https://avatars.githubusercontent.com/u/${30000000 + i}?v=4`} />
+                                                    <AvatarFallback>{`U${i}`}</AvatarFallback>
                                                 </Avatar>
+                                                <span className="text-sm">User {i+1}</span>
                                             </div>
-                                            <div className="ml-3">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    Alice Brown
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p className="text-gray-900 whitespace-no-wrap">
-                                            4,250
-                                        </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p className="text-gray-900 whitespace-no-wrap">
-                                            Contributed to a project
-                                        </p>
-                                        <Badge className="bg-green-100 text-green-800 text-xs py-1">+30 points</Badge>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <Button variant="ghost" size="sm">View Profile</Button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            <Badge variant="outline" className="ml-2">{12000 - i*750} pts</Badge>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                        </Card>
                     </div>
+                </section>
+
+                {/* Last 10 Members */}
+                <section>
+                    <h2 className="text-2xl font-semibold mb-4">Last 10 Members</h2>
+                    <Card>
+                        <CardContent className="p-6">
+                            <ul className="divide-y divide-gray-200">
+                                {[...Array(10)].map((_, i) => (
+                                    <li key={`last-${i}`} className="py-3 flex items-center justify-between">
+                                        <div className="flex items-center">
+                                            <Avatar className="h-10 w-10 mr-3">
+                                                <AvatarImage src={`https://avatars.githubusercontent.com/u/${40000000 + i}?v=4`} />
+                                                <AvatarFallback>{`U${i}`}</AvatarFallback>
+                                            </Avatar>
+                                            <div>
+                                                <p className="font-medium">New Member {i+1}</p>
+                                                <p className="text-sm text-gray-500">Joined {i+1} day{i !== 0 ? 's' : ''} ago</p>
+                                            </div>
+                                        </div>
+                                        <Badge variant="outline">{150 - i*10} pts</Badge>
+                                    </li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
                 </section>
             </main>
         </div>
